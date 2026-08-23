@@ -100,5 +100,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## 📎 Links
 
 - 🔗 [GitHub Repository](https://github.com/yashpatil7788/lawhelp)
-- 📽 [Demo Video (3 mins)]()
-- 🌐 [Live MVP]()
+- 📽 [Demo Video (7 min)](https://youtu.be/kxekXso05Qw?si=4PrxJMEL227t8LtC)
+- 🌐 [Live MVP](https://law-help.vercel.app)
