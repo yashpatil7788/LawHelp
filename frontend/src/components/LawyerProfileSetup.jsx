@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useFirebase, supabase } from "../context/firebase";
 import GeoMap from "./GeoMap";
 import MultiSelect from "./ui/multiselect";
+import { useNavigate } from "react-router-dom";
 
 const mapContainerStyle = {
   width: "100%",
@@ -16,11 +17,14 @@ const defaultCenter = {
 const practiceOptions = ["Civil", "Criminal", "Corporate", "Family", "Property", "Labor"];
 
 function LawyerProfileSetup({ user, onComplete }) {
-  const { uploadProfileImage } = useFirebase();
+  const { uploadProfileImage, currentUser } = useFirebase();
+  const activeUser = user || currentUser;
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    name: user.displayName || "",
-    email: user.email || "",
-    photoURL: user.photoURL || "",
+    name: activeUser?.displayName || activeUser?.user_metadata?.full_name || "",
+    email: activeUser?.email || "",
+    photoURL: activeUser?.photoURL || "",
     age: "",
     gender: "",
     location: "",
@@ -174,7 +178,11 @@ function LawyerProfileSetup({ user, onComplete }) {
         });
       if (error) throw error;
 
-      onComplete();
+      if (onComplete) {
+        onComplete();
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.error("Error updating lawyer profile:", error);
       alert(error.message || "Error updating profile. Please try again.");
