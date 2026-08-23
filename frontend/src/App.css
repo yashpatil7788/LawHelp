@@ -1,0 +1,70 @@
+.field {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  padding: 0.75rem;
+  color: #1e293b;
+  outline: none;
+}
+
+.field:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15);
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0f766e;
+  color: white;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.primary-button:hover {
+  background: #115e59;
+}
+
+.choice {
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #475569;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.choice-active {
+  border-color: #0f766e;
+  background: #ccfbf1;
+  color: #115e59;
+}
+
+.number {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 1.5rem;
+  align-items: center;
+  justify-content: center;
+  background: #ccfbf1;
+  color: #115e59;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+@import "tailwindcss";
+
+#root {
+  margin: 0 auto;
+  text-align: left;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
