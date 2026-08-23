@@ -98,6 +98,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📎 Links
 
-- 🔗 [GitHub Repository](https://github.com/your-username/lawhelp)
-- 📽 [Demo Video (3 mins)](https://your-video-link.com)
-- 🌐 [Live MVP](https://your-mvp-link.com)
+- 🔗 [GitHub Repository](https://github.com/yashpatil7788/lawhelp)
+- 📽 [Demo Video (3 mins)]()
+- 🌐 [Live MVP]()
