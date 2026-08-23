@@ -15,6 +15,7 @@ Run the frontend locally at `http://localhost:5173`.
 - 🧑‍💼 **Smart Lawyer Search** – Find lawyers based on practice area, location, experience, and gender using Leaflet, OpenStreetMap, and Geoapify.
 - 🗂 **Legal Document Repository** – Explore a collection of commonly used legal documents.
 - 🧾 **User Dashboard** – Personalized space for users to manage chats, uploads, and lawyer interactions.
+- 👨‍⚖️ **Lawyer Dashboard** – Dedicated portal for legal professionals to manage their public profile, availability status, and consultation requests from clients.
 - 🏗 **Future Roadmap** – Document generation, real-time lawyer chat, virtual court guidance, and more.
 
 ---
