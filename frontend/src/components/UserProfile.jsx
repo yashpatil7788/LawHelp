@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { supabase, useFirebase } from "../context/firebase";
 import Navbar from "./Navbar";
 import { Check, Edit3, X, Camera } from "lucide-react";
+import LawyerDashboard from "./LawyerDashboard";
 
 const UserProfile = () => {
   const { currentUser, loading: authLoading, uploadProfileImage } = useFirebase();
@@ -26,22 +27,30 @@ const UserProfile = () => {
       }
 
       try {
-        const [profileResult, chatbotResult, docsResult] = await Promise.all([
-          supabase.from("profiles").select("*").eq("id", currentUser.id).maybeSingle(),
-          supabase.from("chatbots").select("chats").eq("user_id", currentUser.id).maybeSingle(),
-          supabase.from("documents").select("*").eq("user_id", currentUser.id).order("created_at", { ascending: false }).limit(2),
-        ]);
+        const profileResult = await supabase.from("profiles").select("*").eq("id", currentUser.id).maybeSingle();
         if (profileResult.error) throw profileResult.error;
-        if (chatbotResult.error) throw chatbotResult.error;
-        if (docsResult.error) throw docsResult.error;
 
         const profileData = profileResult.data || {};
         setUserData(profileData);
+
+        if (profileData.user_type === "lawyer") {
+          setLoading(false);
+          return;
+        }
+
         setEditData({
           name: profileData.name || currentUser.displayName || "",
           phone: profileData.phone || profileData.contact || "",
           location: profileData.location || "",
         });
+
+        const [chatbotResult, docsResult] = await Promise.all([
+          supabase.from("chatbots").select("chats").eq("user_id", currentUser.id).maybeSingle(),
+          supabase.from("documents").select("*").eq("user_id", currentUser.id).order("created_at", { ascending: false }).limit(2),
+        ]);
+
+        if (chatbotResult.error) throw chatbotResult.error;
+        if (docsResult.error) throw docsResult.error;
 
         if (chatbotResult.data) {
           const chats = chatbotResult.data.chats || [];
@@ -123,6 +132,10 @@ const UserProfile = () => {
       <div className="text-teal-600 text-xl font-medium">Loading profile...</div>
     </div>
   );
+
+  if (userData?.user_type === "lawyer") {
+    return <LawyerDashboard />;
+  }
 
   // Function to truncate text
   const truncateText = (text, maxLength = 100) => {
